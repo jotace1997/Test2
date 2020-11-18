@@ -50,24 +50,28 @@ int main(int argc, char **argv)
     cout << "Umbral de error: ";
     cin >> e;
 
-    cout << A << endl << b << endl << x0 << endl;
-/*
+//    cout << A << endl << b << endl << x0 << endl;
+
     //ALGORITMO DE JACOBI
     gettimeofday(&t0, NULL);                    //PRIMERA MARCA DE TIEMPO
+        Precondicionar(A, b);
         noD= A.GetDiagonalInvertida();          //Calculamos la diagonal invertida
         tolerancia= e*NormaInfinito(b);         //Calculamos la tolerancia multiplicando el umbral de error por el valor más alto en valor absoluto del vector derecho        
         iteraciones= 0;                         //Inicializamos las iteraciones a 0 (sólo para depuración)
+  //      cout << noD << endl << tolerancia << endl << endl;
         do
-        {      
+        {     
             aux= b - A*x0;                      //Guardamos en aux el vector derecho menos el producto de la matriz de coeficientes por la aproximación inicial
             x1= x0 + noD*aux;                   // La nueva aproximación se calcula restandole a la aproximación inicial el producto de la inversa de la diagonal por la variable aux (Producto matriz-vector)
-
+         //   cout << aux << endl << x1 << endl << NormaInfinito(aux) << " < " << tolerancia << endl;
+         //   cin >> salir;
             if(NormaInfinito(aux)<tolerancia)   // Si el maximo del vector aux es menor que la tolerancia
                 salir= true;                    // Salimos del bucle y damos x1 cómo una aproximación suficiente dado un umbral de error
             else                                // En caso contrario seguimos y                   
                 x0= x1;                         // La aproximación inicial x0 pasa a ser la aproximación calculada en esta iteración x1
 
             iteraciones++;
+            cout << iteraciones << ": " << NormaInfinito(aux) << " | " << tolerancia << endl;
         } while (!salir);
     gettimeofday(&t1, NULL);                    //SEGUNDA MARCA DE TIEMPO
 
@@ -86,6 +90,4 @@ int main(int argc, char **argv)
     cout << "\t> Umbral de error: " << e << endl;
     cout << "\t> Iteraciones: " << iteraciones << endl;
     cout << "\t> Tiempo: " << tiempo << endl;
-
-*/
 }

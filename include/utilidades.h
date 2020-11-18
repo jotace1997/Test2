@@ -5,6 +5,7 @@
 #include <vector>
 #include <math.h>
 #include <string>
+#include "matrizCSR.h"
 using namespace std;
 
 istream& operator>>(istream &entrada, vector<long double> &v);  //Lectura de un vector
@@ -18,5 +19,7 @@ void Resta(const vector <long double> &v1, const vector <long double> &v2, vecto
 void Suma(const vector <long double> &v1, const vector <long double> &v2, vector<long double> &v);
 
 long double NormaInfinito(const vector<long double> &v);        //Devuelver el máximo valor absoluto de un vector
+
+void Precondicionador(MatrizCSR &m, vector<long double> &v);
 
 #endif

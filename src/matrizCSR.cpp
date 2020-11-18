@@ -88,7 +88,7 @@ MatrizCSR MatrizCSR::GetDiagonalInvertida() const
 
     diagonal.ptrFilas[0]= 0;
 
-    for(int i=0; i<diagonal.filas-1; i++)
+    for(int i=0; i<diagonal.filas; i++)
     {
         //Al ser una matriz diagonal, las columnas se iran incrementando desde 0 hasta filas-1
         diagonal.idColumnas[i]= i;

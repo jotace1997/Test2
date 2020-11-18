@@ -72,3 +72,8 @@ long double NormaInfinito(const vector<long double> &v)
 
     return max;
 }
+
+void Precondicionador(MatrizCSR &m, vector<long double> &v)
+{
+    
+}
