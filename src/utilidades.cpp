@@ -28,7 +28,6 @@ vector<long double> operator+(const vector <long double> &v1, const vector <long
 
     for(int i=0; i<v1.size(); i++)
         v[i]= v1[i] + v2[i];
-        //v.push_back(v1[i] + v2[i]);
 
     return v;
 }
@@ -41,25 +40,20 @@ vector<long double> operator-(const vector <long double> &v1, const vector <long
 
     for(int i=0; i<v1.size(); i++)
         v[i]= v1[i] - v2[i];
-        //v.push_back(v1[i] - v2[i]);
 
     return v;
 }
 
-void Suma(const vector <long double> &v1, const vector <long double> &v2, vector<long double> &v)
+vector<long double> operator*=(const vector <long double> &v1, const vector <long double> &v2)
 {
-    v.erase(v.begin(), v.end());
+    vector<long double> v;
+
+    v.assign(v1.size(), 0.0);
 
     for(int i=0; i<v1.size(); i++)
-        v.push_back(v1[i] + v2[i]);
-}
+        v[i]= v1[i]*v2[i];
 
-void Resta(const vector <long double> &v1, const vector <long double> &v2, vector<long double> &v)
-{
-    v.erase(v.begin(), v.end());
-
-    for(int i=0; i<v1.size(); i++)
-        v.push_back(v1[i] - v2[i]);
+    return v;
 }
 
 long double NormaInfinito(const vector<long double> &v)
@@ -73,7 +67,8 @@ long double NormaInfinito(const vector<long double> &v)
     return max;
 }
 
-void Precondicionador(MatrizCSR &m, vector<long double> &v)
+void Precondicionar(vector<long double> &v, const vector<long double> &P)
 {
-    
+    for(int i=0; i<v.size(); i++)
+        v[i]*= P[i];
 }

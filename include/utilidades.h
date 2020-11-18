@@ -15,11 +15,8 @@ ostream& operator<<(ostream &salida, vector<long double> &v);   //Escritura de u
 vector<long double> operator+(const vector <long double> &v1, const vector <long double> &v2);
 vector<long double> operator-(const vector <long double> &v1, const vector <long double> &v2);
 
-void Resta(const vector <long double> &v1, const vector <long double> &v2, vector<long double> &v);
-void Suma(const vector <long double> &v1, const vector <long double> &v2, vector<long double> &v);
+long double NormaInfinito(const vector<long double> &v);                    //Devuelver el máximo valor absoluto de un vector
 
-long double NormaInfinito(const vector<long double> &v);        //Devuelver el máximo valor absoluto de un vector
-
-void Precondicionador(MatrizCSR &m, vector<long double> &v);
+void Precondicionar(vector<long double> &v, const vector<long double> &P);  //Multiplica los elementos de v por P y los guarda en v
 
 #endif

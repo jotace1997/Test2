@@ -77,8 +77,32 @@ vector<long double> MatrizCSR::operator*(const vector<long double> &v)
         mul[i]= suma;
     }    
 
-    //cout << "a";
     return mul;
+}
+
+void MatrizCSR::Precondicionar(const vector<long double> &v)
+{
+    for (int i=0; i<this->ptrFilas.size()-1; i++)
+        for (int j=this->ptrFilas[i]; j<this->ptrFilas[i+1]; j++)
+            this->valores[j]*= v[this->idColumnas[j]];     
+}
+
+vector <long double> MatrizCSR::GetNoDiagonal() const
+{
+    vector <long double> d(this->filas);
+    bool salir;
+
+    for(int i=0; i<d.size(); i++)
+    {
+        salir= false;
+        for(int j=this->ptrFilas[i]; j<this->ptrFilas[i + 1] && !salir; j++)
+            if(this->idColumnas[j]==i)      
+            {
+                salir= true;                                            
+                d[i]= 1.0/this->valores[j];
+            }
+    }
+    return d;
 }
 
 MatrizCSR MatrizCSR::GetDiagonalInvertida() const
@@ -206,5 +230,4 @@ ostream& operator<<(ostream &salida,  MatrizCSR &m)
     }
     
     return salida;
-
 }
